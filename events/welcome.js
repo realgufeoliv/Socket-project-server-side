@@ -1,8 +1,15 @@
 var figlet = require("figlet");
 let name = "Jéssica";
 const dataAtual = new Date();
-const hora = dataAtual.getHours()
-const periodo = hora >= 12 ? hora >= 18 ? "Boa noite!" : "Boa tarde!"  : hora < 6 ? "Bateu fome na Madrugada?": "Bom dia!";
+const hora = dataAtual.getHours();
+const periodo =
+  hora >= 12
+    ? hora >= 18
+      ? "Boa noite!"
+      : "Boa tarde!"
+    : hora < 6
+    ? "Bateu fome na Madrugada?"
+    : "Bom dia!";
 const welcome = (socket) => {
   socket.emit(
     "boasvindas",
@@ -15,9 +22,9 @@ const welcome = (socket) => {
         whitespaceBreak: true,
       }) +
       `\n Olá ${periodo} Meu nome é ${name} e irei realizar o seu pedido! Caso Deseje sair, digite 'sair'.\n` +
-      `\n O que deseja pedir? Selecione uma opção por vez, Temos: \n 1- Pizzas \n 2- Esfihas \n 3- Bebidas \n 4- Sobremesas \n ` +
-      `\n Digite o número da opção desejada:`
+      "O que deseja pedir? Selecione uma opção por vez, Temos:\n1 - Pizzas\n2 - Esfihas\n3 - Bebidas\n4 - Sobremesas\n"
   );
+  socket.emit("chooseOption", "Digite o número da opção desejada:");
 };
 
 module.exports = welcome;

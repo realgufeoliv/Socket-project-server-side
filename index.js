@@ -11,8 +11,10 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log(`Cliente desconectado (ID: ${socket.id})`);
   });
+
 });
-const PORT = process.env.PORT || 3001;
+
+const PORT =  3001;
 server.listen(PORT, () => {
   console.log(`Servidor socket rodando na porta ${PORT}`);
 });
