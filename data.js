@@ -1,11 +1,3 @@
-funcionarios = [
-  { name: "Luis", cargo: "Gerente" , status: "livre"},
-  { name: "Jéssica", cargo: "Atendente", status: "livre" },
-  { name: "Laura", cargo: "Atendente", status: "livre" },
-  { name: "João", cargo: "Entregador", status: "livre" },
-  { name: "Pedro", cargo: "Entregador", status: "livre" },
-  { name: "Henrique", cargo: "Entregador", status: "livre" },
-];
 pizzas = [
   {name:"Pizza de de Portuguesa", price: 38},
     {name:"Pizza de Queijo", price: 38},
@@ -45,7 +37,9 @@ esfihas = [
 
 options = ["Pizzas", "Esfihas", "Bebidas", "Sobremesas"];
 
-bebidas = [
+payment = ["Dinheiro", "Cartão", "Pix"];
+
+drinks = [
   {name: 'Coca-Cola', price: 5, },
   {name: 'Guaraná', price: 5, },
   {name: 'Fanta', price: 5, },
@@ -58,13 +52,13 @@ bebidas = [
   {name: 'Cerveja', price: 5, },
 ];
 
-sobremesas = [{name:"Pudim",price:8},{name:'Sorvete', price:7}, {name:'Petit Gateau', price:16},{name:'Torta de Limão', price:9}];
+desserts = [{name:"Pudim",price:8},{name:'Sorvete', price:7}, {name:'Petit Gateau', price:16},{name:'Torta de Limão', price:9}];
 
 module.exports  = {
-    funcionarios,
     esfihas,
     pizzas,
     options,
-    bebidas,
-    sobremesas
+    drinks,
+    desserts,
+    payment
 }

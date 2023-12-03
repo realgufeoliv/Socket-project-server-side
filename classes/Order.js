@@ -4,7 +4,6 @@ class Order {
         this.date = new Date();
         this.items = [];
         this.total = 0;
-        this.status = "pending";
         this.adress = "";
     }
     addItem(item) {
@@ -17,9 +16,7 @@ class Order {
         this.total -= item.price;
         this.items.splice(this.items.indexOf(item), 1);
     }
-    statusUpdate(status) {
-        this.status = status;
-    }
+
     adressDelivery(adress) {
         this.adress = adress;
     }

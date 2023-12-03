@@ -8,9 +8,9 @@ const getMenu = (option) => {
     case 2:
       return data.esfihas;
     case 3:
-      return data.bebidas;
+      return data.drinks;
     case 4:
-      return data.sobremesas;
+      return data.desserts;
   }
 };
 const printMenu = (option) => {
