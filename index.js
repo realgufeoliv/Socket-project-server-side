@@ -1,20 +1,42 @@
-const http = require("http"); // Importando o módulo http do Node.js
-const server = http.createServer(); // Criando o servidor http
-const socketIO = require("socket.io"); // Importando o socket.io
-const io = socketIO(server); // Criando o servidor socket usando o servidor http criado
+const WebSocket = require('ws');
 const welcome = require("./events/welcome");
-const ask = require("./events/chat");
-io.on("connection", (socket) => {
-  welcome(socket)
-  console.log(`Um cliente acaba de entrar ${socket.id}`);
-  ask(socket)
-  socket.on("disconnect", () => {
-    console.log(`Cliente desconectado (ID: ${socket.id})`);
+const strings = require("./strings");
+const getStep = require("./getStep");
+const http = require('http');
+const chat = require('./events/chat');
+const server = http.createServer();
+const wss = new WebSocket.Server({ noServer: true });
+const Order = require("./classes/Order");
+buildMessage = (step,message) => {
+  return JSON.stringify({step,message});
+}
+server.on('upgrade', (request, socket, head) => {
+  wss.handleUpgrade(request, socket, head, (ws) => {
+    wss.emit('connection', ws, request);
   });
-
 });
 
-const PORT =  3001;
-server.listen(PORT, () => {
-  console.log(`Servidor socket rodando na porta ${PORT}`);
+wss.on('connection', (ws) => {
+  let order = new Order();
+  welcome(ws);
+  ws.on('message', (message) => {
+    if (getStep.getMessage(message) == "sair") {
+      return ws.close();
+    }
+    if (getStep.getMessage(message) == "concluir") {
+     return  ws.send(JSON.stringify({step:'address',message:strings.paymentOptionsMessage}));
+    }
+    getStep.getStep(ws,message,order);
+    console.log(`Mensagem recebida => ${message}`);
+    
+  });
+  ws.on('close', () => {
+    chat.order = null;
+
+    console.log('Conexão fechada');
+  });
+});
+
+server.listen(3001, () => {
+  console.log('Servidor está ouvindo na porta 3001');
 });

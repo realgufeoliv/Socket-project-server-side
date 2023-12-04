@@ -1,5 +1,6 @@
 class Order {
     constructor() {
+        console.log("Order created");
         this.id = 0;
         this.date = new Date();
         this.items = [];

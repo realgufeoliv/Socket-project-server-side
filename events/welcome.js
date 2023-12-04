@@ -1,11 +1,8 @@
-const strings = require('../strings');
-
-
+const strings = require("../strings");
+buildMessage = (step,message) => {
+  return JSON.stringify({step,message});
+}
 const welcome = (socket) => {
-  socket.emit('welcome',
-      strings.welcomeMessage
-      
-  );
-  socket.emit('chooseOption',"Digite o número da opção desejada:");
+  socket.send(buildMessage('chooseOption',strings.welcomeMessage+'\nDigite o número da opção desejada:'));
 };
 module.exports = welcome;
