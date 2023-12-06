@@ -13,7 +13,6 @@ class Order {
     this.itemsWithPrice.push(item);
     this.total += item.price;
     this.items.push(item.name);
-    console.log(item.name);
     console.log(this.items);
   }
   removeItem(index) {
