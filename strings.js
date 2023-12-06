@@ -1,6 +1,8 @@
-var figlet = require("figlet");
+/*Arquivo com strings bastante utilizadas */
+/*Bibliotecas de estilização*/
+var figlet = require("figlet");   
 const colors = require("colors");
-
+/*data e hora atuais*/
 const dataAtual = new Date();
 const hora = dataAtual.getHours();
 

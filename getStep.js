@@ -1,13 +1,13 @@
+/*Função auxiliar getStep para encaminhar a mensagem ao step dela*/
+
 const chat = require('./events/chat');
 const payment = require('./events/payment');
+const helpers = require('./helpers');
 
-getMessage = (message) => {
-    return JSON.parse(message).message;
-}
 
 const getStep = (socket,message,order)=>{
     let step = JSON.parse(message).step;
-    let Parsedmessage = getMessage(message)
+    let Parsedmessage = helpers.getMessage(message)
     switch(step){
         case 'chooseOption':
             chat.chooseOption(socket,Parsedmessage,order);
@@ -21,6 +21,9 @@ const getStep = (socket,message,order)=>{
         case 'finish':
             payment.finish(socket,Parsedmessage,order);
         break;
+        case 'cancel':
+            chat.cancel(socket,Parsedmessage,order);
+        break;
     }
 }
-module.exports = {getStep,getMessage};
+module.exports = {getStep};

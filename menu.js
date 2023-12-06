@@ -1,3 +1,4 @@
+/*Arquivo para buildar o menu da opção selecionada*/
 const data = require("./data");
 var figlet = require("figlet");
 
@@ -17,7 +18,7 @@ const printMenu = (option) => {
   let menu = getMenu(option);
   let menuString =
     `---------------------------------------------------------------------------\n` +
-    figlet.textSync(`Cardápio de ${data.options[option - 1]}`, {
+    figlet.textSync(`Cardápio de ${data.options[option - 1]}`, { // Cria o título do cardápio com figlet
       font: "Standard",
       horizontalLayout: "default",
       verticalLayout: "default",
@@ -26,7 +27,7 @@ const printMenu = (option) => {
     }) +
     "\n";
   menu.forEach((item, index) => {
-    menuString += `${index + 1} - ${item.name} - R$${item.price}\n`;
+    menuString += `${index + 1} - ${item.name} - R$${item.price}\n`; //itens do cardápio
   });
   return (
     menuString

@@ -1,8 +1,15 @@
+/**
+ * Mensagem de boas vindas
+ */
 const strings = require("../strings");
-buildMessage = (step,message) => {
-  return JSON.stringify({step,message});
-}
+const helpers = require("../helpers");
 const welcome = (socket) => {
-  socket.send(buildMessage('chooseOption',strings.welcomeMessage+'\nDigite o número da opção desejada:'));
+  // Envia mensagem de boas vindas e encaminha para o step chooseOption
+  socket.send(
+    helpers.buildMessage(
+      "chooseOption",
+      strings.welcomeMessage + "\nDigite o número da opção desejada:"
+    )
+  );
 };
 module.exports = welcome;
